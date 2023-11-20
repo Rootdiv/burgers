@@ -4,6 +4,12 @@
   .container {
     display: flex;
     align-items: center;
+
+    @media screen and (max-width: 1225px) {
+      flex-wrap: wrap;
+      max-width: 420px;
+      justify-content: center;
+    }
   }
 }
 
@@ -11,23 +17,44 @@
   img {
     vertical-align: bottom;
   }
+
+  @media screen and (max-width: 1225px) {
+    order: 1;
+  }
 }
 
 .menu {
   margin-left: 191px;
 
+  @media screen and (max-width: 1225px) {
+    flex-basis: 100%;
+    margin: 20px 0;
+    order: 3;
+  }
+
   &-list {
     display: flex;
     gap: 10px 88px;
+
+    @media screen and (max-width: 1225px) {
+      justify-content: space-between;
+      gap: 10px;
+    }
   }
 
-  &-item a {
-    color: #ffffff;
-    font-size: 18px;
-    text-decoration: none;
+  &-item {
+    a {
+      color: #ffffff;
+      font-size: 18px;
+      text-decoration: none;
 
-    &:hover {
-      border-bottom: 2px solid #ffffff;
+      &:hover {
+        border-bottom: 2px solid #ffffff;
+      }
+    }
+
+    @media screen and (max-width: 1225px) {
+      text-align: center;
     }
   }
 }
@@ -43,4 +70,9 @@
   font-size: 18px;
   user-select: none;
   margin-left: auto;
+
+  @media screen and (max-width: 1225px) {
+    margin-left: 30px;
+    order: 2;
+  }
 }

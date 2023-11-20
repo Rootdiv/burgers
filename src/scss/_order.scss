@@ -5,6 +5,11 @@
   padding-bottom: 180px;
   overflow: hidden;
 
+  @media screen and (max-width: 1225px) {
+    background: none;
+    padding-bottom: 20px;
+  }
+
   .container {
     position: relative;
   }
@@ -14,6 +19,10 @@
     top: 0;
     right: calc(100% - 764px);
     z-index: -1;
+
+    @media screen and (max-width: 1225px) {
+      width: 800px;
+    }
   }
 
   &-form {
@@ -24,6 +33,14 @@
     width: 426px;
     padding: 60px 40px;
     margin-left: 674px;
+
+    @media screen and (max-width: 1225px) {
+      margin-left: auto;
+      margin-right: auto;
+      max-width: 426px;
+      width: auto;
+      padding: 20px;
+    }
 
     &-text {
       font-size: 24px;
@@ -48,6 +65,11 @@
       border-radius: 8px;
       background-image: linear-gradient(95.61deg, #da8023 0%, #e2b438 100%);
 
+      @media screen and (max-width: 1225px) {
+        max-width: 100%;
+        width: auto;
+      }
+
       &.error {
         background-image: none;
         background-color: #ff0000;
@@ -62,6 +84,10 @@
         border-radius: 8px;
         color: #ffffff;
         outline: none;
+
+        @media screen and (max-width: 1225px) {
+          width: calc(100% - 2px);
+        }
       }
     }
 

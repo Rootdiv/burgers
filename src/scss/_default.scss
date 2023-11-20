@@ -17,6 +17,11 @@ ul {
 .container {
   max-width: 1200px;
   margin: 0 auto;
+
+  @media screen and (max-width: 1225px) {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
 }
 
 .button {
@@ -46,4 +51,9 @@ ul {
   line-height: 1.25;
   letter-spacing: 1.92px;
   text-transform: uppercase;
+
+  @media screen and (max-width: 570px) {
+    font-size: 36px;
+    line-height: 46px;
+  }
 }

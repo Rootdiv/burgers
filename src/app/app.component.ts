@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, Component, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
@@ -20,10 +20,16 @@ interface IProduct {
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
   providers: [AppService],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class AppComponent {
   title = 'Бургер чеддер';
   currency = '$';
+  loaderShowed = true;
+  loader = true;
+
+  mainImageStyle: any;
+  orderImageStyle: any;
 
   form = this.fb.group({
     order: ['', Validators.required],
@@ -35,7 +41,21 @@ export class AppComponent {
 
   constructor(private fb: FormBuilder, private appService: AppService) {}
 
+  @HostListener('document:mousemove', ['$event'])
+  onMouseMove(event: MouseEvent) {
+    this.mainImageStyle = { transform: `translate(-${(event.clientX * 0.3) / 8}px, -${(event.clientX * 0.3) / 8}px)` };
+    this.orderImageStyle = { transform: `translate(-${(event.clientX * 0.3) / 8}px, -${(event.clientX * 0.3) / 8}px)` };
+  }
+
   ngOnInit() {
+    setTimeout(() => {
+      this.loaderShowed = false;
+    }, 3000);
+
+    setTimeout(() => {
+      this.loader = false;
+    }, 4000);
+
     this.appService.getData().subscribe(data => {
       this.goodsData = data;
     });

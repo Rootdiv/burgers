@@ -3,6 +3,10 @@
   background-position: top center;
   overflow: hidden;
 
+  @media screen and (max-width: 1225px) {
+    background: none;
+  }
+
   &-content {
     padding-top: 103px;
     padding-bottom: 199px;
@@ -34,6 +38,11 @@
     letter-spacing: 3.6px;
     text-transform: uppercase;
     margin-bottom: 56px;
+
+    @media screen and (max-width: 570px) {
+      font-size: 65px;
+      margin-top: 20px;
+    }
   }
 
   &-text {
@@ -46,5 +55,10 @@
     position: absolute;
     top: -123px;
     left: calc(100% - 991px);
+
+    @media screen and (max-width: 1225px) {
+      z-index: -1;
+      opacity: 40%;
+    }
   }
 }

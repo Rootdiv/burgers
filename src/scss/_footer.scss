@@ -1,10 +1,20 @@
 .footer {
   padding: 60px 0;
 
+  .logo {
+    order: unset;
+  }
+
   .container {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 30px 20px;
+
+    @media screen and (max-width: 570px) {
+      flex-direction: column;
+      justify-content: center;
+    }
   }
 
   .rights {

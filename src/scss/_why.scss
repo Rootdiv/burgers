@@ -7,9 +7,14 @@
   &-items {
     padding-top: 60px;
     display: grid;
-    gap: 15px 100px;
+    gap: 50px 100px;
     grid-template-columns: repeat(3, 312px);
     justify-content: center;
+
+    @media screen and (max-width: 1225px) {
+      grid-template-columns: auto;
+      max-width: 500px;
+    }
   }
 
   &-item {

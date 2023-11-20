@@ -4,11 +4,20 @@
   background-size: 1400px;
   padding-bottom: 180px;
 
+  @media screen and (max-width: 1225px) {
+    background: none;
+  }
+
   &-items {
     display: grid;
     gap: 24px;
     grid-template-columns: repeat(3, 384px);
     padding-top: 60px;
+
+    @media screen and (max-width: 1225px) {
+      grid-template-columns: repeat(auto-fill, minmax(290px, 384px));
+      justify-content: center;
+    }
   }
 
   &-item {
@@ -20,11 +29,24 @@
     border: 1px solid #353535;
     background-color: #211a16;
 
+    @media screen and (max-width: 1225px) {
+      padding: 15px;
+    }
+
     &-image {
       height: 250px;
 
+      @media screen and (max-width: 1225px) {
+        height: auto;
+      }
+
       img {
         max-width: 100%;
+        transition: all 0.5s ease;
+
+        &:hover {
+          transform: scale(1.1);
+        }
       }
     }
 
