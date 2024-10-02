@@ -3,15 +3,8 @@ import { CommonModule } from '@angular/common';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AppService } from './app.service';
-
-interface IProduct {
-  image: string;
-  title: string;
-  text: string;
-  price: number;
-  basePrice: number;
-  grams: number;
-}
+import { IProduct } from './models/product.model';
+import { IResponseSendOrder } from './models/order.model';
 
 @Component({
   selector: 'app-root',
@@ -28,8 +21,8 @@ export class AppComponent {
   loaderShowed = true;
   loader = true;
 
-  mainImageStyle: any;
-  orderImageStyle: any;
+  mainImageStyle: { transform: string } | undefined;
+  orderImageStyle: { transform: string } | undefined;
 
   form = this.fb.group({
     order: ['', Validators.required],
@@ -37,14 +30,18 @@ export class AppComponent {
     phone: ['', Validators.required],
   });
 
-  goodsData: IProduct[] | any;
+  goodsData!: IProduct[];
 
   constructor(private fb: FormBuilder, private appService: AppService) {}
 
   @HostListener('document:mousemove', ['$event'])
   onMouseMove(event: MouseEvent) {
-    this.mainImageStyle = { transform: `translate(-${(event.clientX * 0.3) / 8}px, -${(event.clientX * 0.3) / 8}px)` };
-    this.orderImageStyle = { transform: `translate(-${(event.clientX * 0.3) / 8}px, -${(event.clientX * 0.3) / 8}px)` };
+    this.mainImageStyle = {
+      transform: `translate(-${(event.clientX * 0.3) / 8}px, -${(event.clientX * 0.3) / 8}px)`,
+    };
+    this.orderImageStyle = {
+      transform: `translate(-${(event.clientX * 0.3) / 8}px, -${(event.clientX * 0.3) / 8}px)`,
+    };
   }
 
   ngOnInit() {
@@ -96,11 +93,11 @@ export class AppComponent {
   confirmOrder() {
     if (this.form.valid) {
       this.appService.sendOrder(this.form.value).subscribe({
-        next: (response: any) => {
+        next: (response: IResponseSendOrder) => {
           alert(response.message);
           this.form.reset();
         },
-        error: response => {
+        error: (response: IResponseSendOrder) => {
           alert(response.error.message);
         },
       });
